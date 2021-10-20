@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>STUDENT GRADE SHEET</title>
+		<meta charset="utf-8">
+		<meta name="keyword" content="">
+		<meta name="description" content="">
+		<meta name="author" content="Prosper Ibe">
+		<meta name="viewport" content="width=device-width,initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+</head>
+<style type="text/css">
+	
+</style>
+	
+	<body>
+		<div><br><br>
+			<h3 style="text-align:center">STUDENT GRADING SHEET</h3><br><br>
+			<table class="table table-borderless">
+				<tr class="table-dark">
+					<th>Subjects</th><th>Score</th><th>Grade</th>
+				</tr>
+				<tr>
+					<td>English</td><td><input type="text" name="genglish" id="eng" onchange="greetings('eng','ges')"></td><td><input type="text" name="geng" id="ges"></td>
+				</tr>
+				<tr>
+					<td>Mathematics</td><td><input type="text" name="maths" id="mth" onchange="greetings('mth','sts')"></td><td><input type="text" name="gmat" id="sts"></td>
+				</tr>
+				<tr>
+					<td>Chemistry</td><td><input type="text" name="chemistry" id="chm" onchange="greetings('chm','spc')"></td><td><input type="text" name="gchem" id="spc"></td>
+				</tr>
+				<tr>
+					<td>Biology</td><td><input type="text" name="biology" id="fsb" onchange="greetings('fsb','bio')"></td><td><input type="text" name="gbio" id="bio"></td>
+				</tr>
+				<tr>
+					<td>French</td><td><input type="text" name="french" id="frn" onchange="greetings('frn','ench')"></td><td><input type="text" name="gfren" id="ench"></td>
+				</tr>
+				</table>
+				
+				<p><b>TOTAL SCORE:</b> <span id="ttl" style="font-weight:Bold;"></span></p>
+				<p><b> AVERAGE SCORE:</b> <span id="avr" style="font-weight:Bold;"></span></p>
+				
+				<p><strong>Teacher's Remarks:</strong> <span id='disp'></span></p>
+			
+			<br><br><br><br><br>
+
+			<button class="btn btn-outline-success" onclick="sumUp('eng','mth','chm','fsb','frn')">GET RESULT</button><br><br>
+
+			
+		</div>	
+
+	<!--javascript-->
+	<script type="text/javascript" lang="javascript">
+		function sumUp(english,mathematics,chemistry,biology,french){
+			var ges= document.getElementById(english).value;
+			var fmt= document.getElementById(mathematics).value;
+			var ich= document.getElementById(chemistry).value;
+			var fsb= document.getElementById(biology).value;
+			var fch= document.getElementById(french).value;
+			var addition= Number(ges) + Number(fmt) + Number(ich) + Number(fsb) + Number(fch)
+			var avg= Number(addition)/5
+			document.getElementById('ttl').innerHTML=addition;
+			document.getElementById('avr').innerHTML=avg;
+
+			if(avg >= 50){
+			document.getElementById('disp').innerHTML = 'You did well' ;
+			}else{
+			document.getElementById('disp').innerHTML = 'You disappointed your teacher' ;
+			}
+		}
+
+		function greetings(scores,grades){
+			var score= document.getElementById(scores).value;
+
+				if(score >= 70 && score <=100){
+					var pass='A';
+				}else if(score >=60 && score <=69){
+					var pass='B';
+				} else if (score >=50 && score <=59){
+					var pass='C';
+				} else if (score >=45 && score <=49){
+					var pass='D';
+				}else if (score >=40 && score <=44){
+					var pass='E';
+				} else if(score < 40 && score >=0){
+					var pass='F';
+				} else {
+					var pass = 'Out of Range';
+				}
+			document.getElementById(grades).value= pass;
+		}
+	 </script> 
+
+
+<!-- JS Files-->
+		<script type="text/javascript" src="bootstrap/js/jquery.min.js"></script>
+		<script type="text/javascript" src="bootstrap/js/popper.min.js"></script>
+		<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+	</body>
+</html>				
